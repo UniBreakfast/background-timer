@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  height: 100dvh;
+  display: flex;
+}
+
+form {
+  margin: auto;
+  display: grid;
+  gap: 10px;
+}
+
+input, select {
+  text-align: center;
+}

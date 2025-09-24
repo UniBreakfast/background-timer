@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <title>Background Timer</title>
+<head id="head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' style='background:black'><text y='16' font-family='Trebuchet MS' font-weight='900' fill='orange'>UB</text></svg>">
 
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+
+  <title>Background Timer</title>
 </head>
 
-<body>
-  <input type="number" id="amount" min="1" max="999" value="10">
-  <select id="unit">
-    <option value="1000">Seconds</option>
-    <option value="60000" selected>Minutes</option>
-    <option value="3600000">Hours</option>
-  </select>
-  <button id="start">Start Timer</button>
-  <p id="status"></p>
+<body id="body">
+  <form action="javascript:" id="form">
+    <input type="number" id="amount" min="1" max="999" value="10">
+    
+    <select id="unit">
+      <option value="1000">Seconds</option>
+      <option value="60000" selected>Minutes</option>
+      <option value="3600000">Hours</option>
+    </select>
+
+    <button id="start">Start Timer</button>
+    
+    <output id="status"></output>
+  </form>
 </body>
 
 </html>

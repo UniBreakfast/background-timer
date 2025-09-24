@@ -1,7 +1,4 @@
-const amountInput = document.querySelector('#amount')
-const unitSelect = document.querySelector('#unit')
-const startBtn = document.querySelector('#start')
-const statusText = document.querySelector('#status')
+const [amountInput, unitSelect, startBtn, statusOut] = form
 
 let ctx, soundBuffer, endTime, timerActive = false
 
@@ -54,12 +51,12 @@ function checkTimer() {
   
   let left = Math.ceil(Math.max(0, endTime - Date.now()) / 1000)
 
-  statusText.textContent = 'Time left: ' + left + ' sec'
+  statusOut.value = 'Time left: ' + left + ' sec'
 
   if (left <= 0) {
     timerActive = false
     playSound()
-    statusText.textContent = 'DONE!'
+    statusOut.value = 'DONE!'
 
   } else {
     keepAlive()
