@@ -20,17 +20,20 @@ async function startTimer() {
 }
 
 async function loadSound(url) {
-  let res = await fetch(url)
-  let arr = await res.arrayBuffer()
+  const res = await fetch(url)
+  const arr = await res.arrayBuffer()
 
   soundBuffer = await ctx.decodeAudioData(arr)
 }
 
 function playSound() {
-  let src = ctx.createBufferSource()
+  const src = ctx.createBufferSource()
+  const gainNode = ctx.createGain()
+
+  gainNode.gain.value = 0.2
 
   src.buffer = soundBuffer
-  src.connect(ctx.destination)
+  src.connect(gainNode).connect(ctx.destination)
   src.start()
 }
 
@@ -43,20 +46,20 @@ function keepAlive() {
   osc.connect(gainNode).connect(ctx.destination)
   osc.start()
   // short burst that keeps context "active"
-  osc.stop(ctx.currentTime + 1) 
+  osc.stop(ctx.currentTime + 0.5) 
 }
 
 function checkTimer() {
   if (!timerActive) return
   
-  let left = Math.ceil(Math.max(0, endTime - Date.now()) / 1000)
+  const left = Math.ceil(Math.max(0, endTime - Date.now()) / 1000)
 
   statusOut.value = 'Time left: ' + left + ' sec'
 
   if (left <= 0) {
     timerActive = false
-    playSound()
     statusOut.value = 'DONE!'
+    playSound()
 
   } else {
     keepAlive()
